@@ -4,10 +4,6 @@
 
 library(glmnet)
 
-return_alpha_given_kappa<-function(kappa1T,Theorysolution,kappa1_seq=seq(0.2,6,0.02)){
-  closed_index=which.min(abs(kappa1_seq-kappa1T))
-  return(Theorysolution[closed_index,3])
-}
 generate_beta<-function(p,kappa1,beta_true_gen="normal"){
   if(beta_true_gen=="normal"){
     return(rnorm(p,sd=kappa1))

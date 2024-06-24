@@ -1,4 +1,4 @@
-
+# estimate xi with estimated signal strength and summary
 library(glmnet)
 
 return_alpha_given_kappa<-function(kappa1T,Theorysolution,kappa1_seq=seq(0.2,6,0.02)){
