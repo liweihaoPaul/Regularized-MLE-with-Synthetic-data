@@ -1,0 +1,9 @@
+in this folder, we will consider several betahat: 
+1) betahat from only target data
+  1.1) betahat based on tau(LOOCV) with non informative synthetic data
+  1.2) betahat based on  tau(kappa1_hat)  with non informative synthetic data
+  1.3) betahat based on  tau(kappa1)  with non informative synthetic data(oracle)
+2) betahat from target data and source data
+  2.1) betahat based on tau(LOOCV) with informative source data
+  2.2) betahat based on tau(kappa1_hat,kesee_hat) with informative synthetic data
+  2.3) betahat based on tau(kappa1,kesee) with informative synthetic data(oracle)

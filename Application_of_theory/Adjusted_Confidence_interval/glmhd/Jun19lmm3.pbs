@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -q parallel24
+#PBS -l select=1:ncpus=24:mem=180GB
+#PBS -j oe
+#PBS -N MLEadj
+
+cd $PBS_0_WORKDIR;
+source /app1/ebenv
+module load R/4.2.2-foss-2022b
+cd /home/svu/e0708167/Nov23_CGMT_experiment/numerical_study/application_theory_procedure/adj_CI/glmhd/
+R CMD BATCH adj_CI_MLE.R

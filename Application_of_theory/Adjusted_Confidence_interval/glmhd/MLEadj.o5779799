@@ -1,0 +1,14 @@
+      ======================================================================================
+     Resource Usage on 2024-01-03 16:25:06.592705:
+     JobId: 5779799.venus01  				 Project: _pbs_project_default 
+     Submission Host: atlas8-c01 
+     Exit Status: 271
+     NCPUs Requested: 24 				 NCPUs Used: 24
+     Memory Requested: 180gb 				 Memory Used: 57129420kb 
+     Vmem Used: 106343320kb
+     CPU Time Used: 360:34:55 
+     Walltime requested: 240:00:00 			 Walltime Used: 17:03:24
+     Submit Time:  Tue Jan  2 23:21:39 2024 		 Start Time: Wed Jan  3 16:24:48 2024 
+     End Time: Wed Jan  3 16:25:06 2024 
+     Execution Nodes Used: (atlas8-c50:ncpus=24:mem=188743680kb)
+     ======================================================================================

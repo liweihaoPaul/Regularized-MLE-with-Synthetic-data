@@ -1,0 +1,36 @@
+# get mse curve based on estimated kappa1
+
+
+
+source("system_eq_solver_non_infor_syn_data.R")
+library(parallel)
+tau_0_seq=seq(0.1,2,0.1)
+numCores=min(50,detectCores())
+# following function will return a list with mse curve for each kappa1_hat
+estimated_solution_p400<-function(kappa1,delta){
+  load(paste0("result_matrix_kappa1_",kappa1,
+              "_delta_",delta,"_tau_0_",
+              1/4,"_beta_true_gen_","t3",".RData"))
+  kappa1_hat_p400=est_kappa1_matrix[,2]
+
+  repeat_function<-function(indexx){
+    kappa1_hat=kappa1_hat_p400[indexx]
+    # store in a matrix
+    solution_system_matrix=matrix(0,nrow=length(tau_0_seq),ncol=3)
+    for(i in 1:length(tau_0_seq)){
+      tau_0=tau_0_seq[i]
+      m=20/delta
+      solution_system_matrix[i,]=fixed_point_non_infor_syn_data(delta,m,kappa1_hat,tau_0,MC_NUM=10000)
+    }
+    return(solution_system_matrix)
+  }
+  result_list_solution_kappahat_p400=mclapply(1:length(kappa1_hat_p400),repeat_function,mc.cores=numCores)
+  save(result_list_solution_kappahat_p400,file=paste0("result_list_solution_kappahat_p400_kappa1_",kappa1,
+                                                       "_delta_",delta,".RData"))
+
+}
+
+estimated_solution_p400(kappa1=1,delta=2)
+estimated_solution_p400(kappa1=1,delta=4)
+
+
