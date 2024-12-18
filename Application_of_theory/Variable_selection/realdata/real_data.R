@@ -1,4 +1,13 @@
 
+mydata=read.table("GSE_top600_variable_rows.txt",header=FALSE,sep="\t")
+mydata=t(mydata)
+mydata=mydata[,-1]
+mydata=mydata[-1,]
+mydata=as.matrix(mydata)
+mode(mydata) <- "numeric"
+final_data <- scale(mydata, center = TRUE, scale = FALSE)
+
+
 gene_name<-read.table("top600_gene_name.txt",header=F)
 gene_name<-as.vector(gene_name$V1)
 library(MASS)
@@ -17,15 +26,12 @@ source("MDSMAP.R")
 source("utilsMAP.R")
 
 
-f <- function(x){
-  exp(x)/(1 + exp(x))
-}
 
 p=ncol(final_data)
 n=nrow(final_data)
 M=20*p
 delta=n/p
-set.seed(1)
+set.seed(123)
 
 y=c(rep(0,400),rep(1,2000))
 X=final_data/sqrt(n)
@@ -35,11 +41,7 @@ sigma_hat=crossprod(X)/n
 X.syn = mvrnorm(M, mu = rep(0, p), Sigma = sigma_hat)
 y.syn = rbinom(M, 1, rep(0.5,M))
 
-# find sample covariance of X, EX is column mean sigma_hat=(X-EX)^T(X-EX)/n
-EX=colMeans(X)
-sigma_hat=cov(X)
-X.syn = mvrnorm(M, mu = EX, Sigma = sigma_hat)
-y.syn = rbinom(M, 1, rep(0.5,M))
+
 
 
 q=0.1
