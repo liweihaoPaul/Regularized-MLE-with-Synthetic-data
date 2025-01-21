@@ -1,2 +1,2 @@
 # Regularized-MLE-with-Synthetic-data
-Code and paper for "Using synthetic data to regularize Maximum likelihood estimation"
+Code for "Regularization Using Synthetic Data in High-Dimensional Models"
